@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    align-self: center;
+    font-size: 30px;
+    margin-left: 30px;
+    font-weight: initial;
+    margin-top: 100px;
+}
+
+.buttons {
+    margin-bottom: 0px;
+    position: absolute;
+    left: 30px;
+}
+
+img:hover {
+    cursor: pointer;
+}
