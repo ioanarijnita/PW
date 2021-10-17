@@ -51,20 +51,20 @@ import './styles.scss';
           {bagItems.slice(0,2).map(item => 
           <div style = {{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
             <div style = {{textAlign: 'start'}}>
-              <text style = {{width: 100}}><strong>Name: </strong>{item.name}</text>
+              <text style = {{}}><strong>Name: </strong>{item.name}</text>
               <br />
               <text style = {{width: 100}}><strong>Price: </strong>{currency === "0" || currency === undefined ? item.price : currency === "1" ? parseInt((parseInt(item.price) / 1.16).toFixed(2)) : currency === "2" ? parseInt((parseInt(item.price) / 1.36).toFixed(2)) : ""} {selectedCurrencySymbol}</text>
               <br />
               <text><strong>Size: </strong>{item.sizes === undefined ? "" : item.sizes![item.sizeIndex]}</text>
               <br /> <br/> <br/><br /> <br/> <br/><br/>
             </div>
-            <text>IMAGE</text>
+            <img  style = {{width: 135, height: 135}} src = {`./photo${item.id}.jpg`} />
           </div>
           )}
           <div className="modal-footer">
               <p style = {{display: 'flex', flex: 'start', position: 'absolute', top: 420}}><strong>Total:</strong></p>
               <p style = {{position: 'absolute', left: 200, bottom: 60, fontWeight: 'bold'}}>{totalAmmount} {selectedCurrencySymbol}</p>
-            <Button style = {{top: 40}} variant = "outlined" className="btn-cancel">
+              <Button style = {{position: 'absolute', left: 10, bottom: 10}} variant = "outlined" className="btn-cancel">
               <Link style = {{textDecoration: 'none', color: 'black'}} to = "/cart-page">  View Bag </Link>
             </Button>
             <Button style = {{position: 'absolute', left: 200, bottom: 10,  background: 'rgb(0,152,0)'}}variant = "text" className="btn-cancel">

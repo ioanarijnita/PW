@@ -1,17 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useCartService } from '../hooks/cart-hooks';
 import { useProductService } from '../hooks/product-hook';
 import './styles.scss';
 import HoverImage from "react-hover-image";
+import { CurrencySelection } from '../App';
 
 export function StoreItem(p: {brand: string, name: string, price: string, id: number, image?: string, isSoldOut: boolean}){
 
     const history = useHistory();
     const {getWomenById, womenData} = useProductService();
+    const { selectedCurrencySymbol } = useCartService();
     const { bagItems } = useCartService();
     const [onClick, setOnClick] = useState(false);
+    const { currency, setCurrency } = useContext(CurrencySelection);
+    const k = parseInt(p.price)
+    const [priceConverted, setPriceConverted] = useState<number>()
+    console.log("K este ", k)
     async function imageOnClick() {
         setOnClick(true);
         if (onClick === true) {
@@ -22,6 +28,20 @@ export function StoreItem(p: {brand: string, name: string, price: string, id: nu
         })
     }
 }
+
+function convertPriceForEachItem() {
+    if (currency === "0") {
+        setPriceConverted(parseInt(p.price));
+    } else if (currency === "1") {
+        setPriceConverted(parseInt((parseInt(p.price) / 1.16).toFixed(2)));
+    } else if (currency === "2") {
+        setPriceConverted(parseInt((parseInt(p.price) / 1.36).toFixed(2)));
+    }
+}
+
+useEffect(() => {
+    convertPriceForEachItem();
+}, [currency, p.price])
 
     const [isHover, setIsHover] = useState(false);
 
@@ -64,7 +84,7 @@ export function StoreItem(p: {brand: string, name: string, price: string, id: nu
                 <br />
                 <text>{p.name}</text>
                 <br/>
-                <text>{p.price}</text>
+                <text>{priceConverted} {selectedCurrencySymbol}</text>
                
                
                 

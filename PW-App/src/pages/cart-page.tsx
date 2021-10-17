@@ -144,12 +144,12 @@ export function CartPage()
                     makeTotal();
                 }} >-</Button>
             </div>
-            <img style = {{width: 150, height: 200, marginLeft: 20}}src = {photo}/>
+            <img style = {{width: 150, height: 200, marginLeft: 20}} src = {`./photo${item.id}.jpg`}/>
         </div>
         </div>
         )}
         <br></br><br></br>
-        <text style = {{marginRight: 720, fontWeight: 'bolder', fontSize: 20}}>TOTAL: {totalAmmount} {selectedCurrencySymbol}</text>
+        <text style = {!bagItems.length ? {left: 200, fontWeight: 'bolder', fontSize: 20, position: 'absolute', marginTop: 170} : {marginRight: 720, fontWeight: 'bolder', fontSize: 20}}>TOTAL: {totalAmmount} {selectedCurrencySymbol}</text>
     </div>      
     );
 }
