@@ -28,12 +28,10 @@ function useCart() {
 
         function makeTotal() {
             let sum = 0;
-            console.log("PRRR")
             bagItems.forEach(item => {
                 sum = sum + (parseInt(item.price)! * item.productsAdded!);
             })
             localStorage.setItem("total", String(sum));
-            console.log("SSH")
             setTotalAmmount(sum);
             setRerenderTotal(!rerenderTotal);
         }

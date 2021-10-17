@@ -15,9 +15,7 @@ export function StoreItem(p: {brand: string, name: string, price: string, id: nu
     const { bagItems } = useCartService();
     const [onClick, setOnClick] = useState(false);
     const { currency, setCurrency } = useContext(CurrencySelection);
-    const k = parseInt(p.price)
     const [priceConverted, setPriceConverted] = useState<number>()
-    console.log("K este ", k)
     async function imageOnClick() {
         setOnClick(true);
         if (onClick === true) {

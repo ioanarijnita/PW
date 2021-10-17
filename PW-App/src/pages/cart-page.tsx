@@ -70,7 +70,6 @@ export function CartPage()
         if (total !== null) {
             setTotal(parseInt(total))
         }
-        console.log("total ",total)
     }, [])
 
     useEffect(() => {
@@ -98,13 +97,16 @@ export function CartPage()
             </div>
             <div style = {{marginTop: 110, marginLeft: -130, width: 340, flex:1, flexDirection: 'row'}}>
             {item.sizes?.map((item1, index1) => <Button variant = "outlined" onClick = {() => {
-                size[index] = index1;
-                setSize([...size]);
-                bagItems[index].sizeIndex = index1;
-                setBagItems([...bagItems]);
+                if (index1 !== item?.removedSizes![index1]) {
+                    size[index] = index1;
+                    setSize([...size]);
+                    bagItems[index].sizeIndex = index1;
+                    setBagItems([...bagItems]);
+                }
+
                 bagItems[index].productsAdded = 1;
                 localStorage.setItem("bag", JSON.stringify(bagItems));
-            }} style ={size[index] === index1 ? {backgroundColor: 'black', color:'white'} : {}}>{item1}</Button>)}
+            }} style ={size[index] === index1 ? {backgroundColor: 'black', color:'white'} : item?.removedSizes![index1] === index1 ? {backgroundColor: 'red', color: 'white'} : {}}>{item1}</Button>)}
             
             <Button onClick = {() => {
                 bagItems.splice(index, 1);

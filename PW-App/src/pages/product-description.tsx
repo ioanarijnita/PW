@@ -36,7 +36,7 @@ export function ProductDescription(){
             bagItems[index].productsAdded = bagItems[index].productsAdded! + 1;
             setBagItems([...bagItems]);
         } else {
-            bagItems.push({...womenDataById!, sizeIndex: size!, sizes: sizes, productsAdded: counter});
+            bagItems.push({...womenDataById!, sizeIndex: size!, sizes: sizes, productsAdded: counter, removedSizes: removeSizes});
         }
         localStorage.setItem("bag", JSON.stringify(bagItems));
         makeTotal();

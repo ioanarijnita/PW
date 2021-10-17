@@ -60,7 +60,6 @@ export function Header(p:{title?: string, register?: string}){
         setWomenData([...filteredArraySize]);
         }
         else if (priceFilter !== null) {
-            console.log("ls este ", JSON.parse(priceFilter))
             const priceFilterArray = JSON.parse(priceFilter);
             const minimumFiltered = priceFilterArray[0];
             const maximumFiltered = priceFilterArray[1];
