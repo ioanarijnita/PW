@@ -1,11 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useCartService } from '../hooks/cart-hooks';
 import { useProductService } from '../hooks/product-hook';
-import IMG_3324 from './IMG_3324.jpg' 
-import photo from './photo.jpg';
 import './styles.scss';
+import HoverImage from "react-hover-image";
 
 export function StoreItem(p: {brand: string, name: string, price: string, id: number, image?: string, isSoldOut: boolean}){
 
@@ -20,11 +19,17 @@ export function StoreItem(p: {brand: string, name: string, price: string, id: nu
         })
     }
 
+    const [isHover, setIsHover] = useState(false);
+
     return(
-        <div className = "box" >
-            <div>
+        <div  >
+            <div style = {{display: 'flex', flexDirection: 'column'}}>
                 <br/><br/>
-                    <img onClick = {imageOnClick} style = {{width: 100, height: 100}} src = {`./photo${p.id}.jpg`} />
+                    <img onClick = {imageOnClick} style = {isHover ? {width: 350, height: 450, marginLeft: 50} : {width: 250, height: 350, marginLeft: 50}} src = {`./photo${p.id}.jpg`} 
+                    onMouseOver = {() => setIsHover(true)}
+                    onMouseOut = {() => setIsHover(false)}
+                    />
+                    {/* <HoverImage onClick = {imageOnClick} style = {{width: 100, height: 100}} hoverSrc =  {`./photo${p.id}.jpg`} src = {`./photo${p.id}.jpg`} /> */}
                 <br/>
                 {p.isSoldOut ?
                 <text>E SOLD OUT</text>

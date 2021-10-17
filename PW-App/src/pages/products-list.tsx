@@ -48,7 +48,7 @@ export function ProductList(){
     return (
     <div >
      <br/>
-       <Header title = "Category name"></Header>
+       <Header title = {gender === 0 ? "Women" : gender === 1 ? "Men" : gender === 2 ? "Kids" : "My Shop"}></Header>
        <br/><br/><br/><br/><br/><br/>
        <div style = {{flexDirection: 'row', display: 'flex', flexWrap: 'wrap', marginRight: 20}}>
             {(!searchInput ? womenData : searchResults!).map((item, index) => item.gender === gender || gender === undefined || gender === null ? <StoreItem id = {item.id!} brand = {item.brand} name = {item.name} isSoldOut = {soldOut[index]} price = {item.price}></StoreItem> : <></>)

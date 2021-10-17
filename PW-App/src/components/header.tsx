@@ -169,7 +169,7 @@ export function Header(p:{title?: string, register?: string}){
                  <text style = {{position: 'absolute', left: 1230, bottom: 40, fontWeight: 'bold'}}>{parsedUser?.name}</text>
                  <br/><br/>
                  <div style = {{position: 'absolute', display: 'flex', flexDirection: 'row'}}>
-                <p style = {{fontWeight: 'bold', fontSize: 25, paddingLeft: 5, width: 300}}>{p.title}</p>
+                <p style = {{fontWeight: 'bold', fontSize: 25, paddingLeft: 5, width: 400}}>{p.title}</p>
                 <p style = {{fontWeight: 'bold', fontSize: 25, marginLeft: 400}}>{p.register}</p>
                 </div>
 

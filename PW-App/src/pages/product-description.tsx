@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import {Button} from '@material-ui/core';
 import { Header } from '../components/header';
 import StoreItem from '../components/store-item';
-import photo from './photo.jpg';
 import '../components/styles.scss';
 import { CartContext, useCartService } from '../hooks/cart-hooks';
 import { useLocation } from 'react-router-dom';
@@ -78,15 +77,15 @@ export function ProductDescription(){
     return(
 <div>
     <br/>
-    <Header title = "Category name"></Header>
+    <Header title = {`${womenDataById?.brand} ${womenDataById?.name}`}></Header>
     <div style = {{display: 'flex', justifyContent:'center'}}>
     <br/><br/>
     <img style = {{width: 600, height: 400, position: 'absolute', left: 250, marginTop: 175}} src = {`./photo${womenDataById?.id}.jpg`} />
     <img style = {{width: 100, height: 100, position: 'absolute', left: 80, marginTop: 175}} src = {`./photo${womenDataById?.id}.jpg`} />
     <br/>
-    <img style = {{width: 100, height: 100, position: 'absolute', left: 80, marginTop: 300}} src = {`./photo${womenDataById?.id}1.jpg`} />
+    <img style = {{width: 100, height: 100, position: 'absolute', left: 80, marginTop: 300}} src = {`./photo${womenDataById?.id}.jpg`} />
     <br/>
-    <img style = {{width: 100, height: 100, position: 'absolute', left: 80, marginTop: 425}} src = {`./photo${womenDataById?.id}2.jpg`} />
+    <img style = {{width: 100, height: 100, position: 'absolute', left: 80, marginTop: 425}} src = {`./photo${womenDataById?.id}.jpg`} />
     <br/>
     <div style = {{textAlign:'left', marginLeft: 750, marginTop: 160}}>
         <text className = "text-style" style = {{ fontWeight: 'bold', fontSize: 35}}>{womenDataById?.brand}</text>
