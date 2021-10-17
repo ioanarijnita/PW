@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import StoreDataService from "../services/users.service";
 import { User } from '../models/user-model';
+import { useLoginService } from '../hooks/login-hooks';
 
 export function Registration(){
     const [user, setUser] = useState<User>({
@@ -24,10 +25,12 @@ export function Registration(){
         region: false,
         address: false
     });
+   
 
     const history = useHistory();
+    const {userData, setUserIndex, setUserData, userIndex} = useLoginService();
 
-    function createAccount() {
+    async function createAccount () {
     if (user.username === "" || user.password === "" || user.name === "" || user.surname === "" || user.region === "" || user.address === "") 
     {
         setInputValidation({
@@ -37,11 +40,16 @@ export function Registration(){
             surname: user.surname === "" ? true : false, 
             region: user.region === "" ? true : false, 
             address: user.address === "" ? true : false});
-    }
-     else{
-        StoreDataService.create(user)
-        .then(response => {
+}
+     else {
+        await StoreDataService.create(user)
+        .then( response => {
             console.log(response.data)
+            user.isUserLoggedIn = true;
+            // setUserData([user]);
+            localStorage.setItem("User", JSON.stringify(user));
+            setUserIndex(userData.length);
+            
         })
         history.push("/");
     }

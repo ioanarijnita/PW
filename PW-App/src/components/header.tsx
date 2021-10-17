@@ -8,7 +8,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import TextField from '@mui/material/TextField';
 import { ModalFilter } from './modal-filter';
-import { useLoginService } from '../hooks/login-hooks';
+import { useEffectAsync, useLoginService } from '../hooks/login-hooks';
 import { User } from '../models/user-model';
 import { useProductService } from '../hooks/product-hook';
 import { Women } from '../models/women-model';
@@ -32,7 +32,7 @@ export function Header(p:{title?: string, register?: string}){
     }, [searchInput])
 
     useEffect(() => {
-        const user = localStorage.getItem("User")
+        const user =  localStorage.getItem("User")
         if (user !== null) {
             setParsedUser(JSON.parse(user));
             // setUserData(JSON.parse(user));

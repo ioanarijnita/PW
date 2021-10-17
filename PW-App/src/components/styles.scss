@@ -10,6 +10,20 @@
     font-size: 20px;
 }
 
+.text-on-image {
+    position: absolute;
+    right: 35%;
+    left: 40%;
+    bottom: 50%;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+}
+
+.head-text {
+    position: relative;
+}
+
 .title-style {
     // align-self: center;
     font-size: 300px;

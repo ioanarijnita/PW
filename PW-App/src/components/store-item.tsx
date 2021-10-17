@@ -11,13 +11,17 @@ export function StoreItem(p: {brand: string, name: string, price: string, id: nu
     const history = useHistory();
     const {getWomenById, womenData} = useProductService();
     const { bagItems } = useCartService();
+    const [onClick, setOnClick] = useState(false);
     async function imageOnClick() {
-        await getWomenById(p.id);
+        setOnClick(true);
+        if (onClick === true) {
+            await getWomenById(p.id);
         history.push({
             pathname: '/productdescription',
             state: p.id
         })
     }
+}
 
     const [isHover, setIsHover] = useState(false);
 
@@ -25,15 +29,36 @@ export function StoreItem(p: {brand: string, name: string, price: string, id: nu
         <div  >
             <div style = {{display: 'flex', flexDirection: 'column'}}>
                 <br/><br/>
+                <div className = "head-text">
+                    {p.isSoldOut ?  
+                    
+                    <img  style = {isHover ? {width: 350, height: 450, marginLeft: 50, opacity: 0.5} : {width: 250, height: 350, marginLeft: 50, opacity: 0.5}} src = {`./photo${p.id}.jpg`} 
+                    // onMouseOver = {() => setIsHover(true)}
+                    // onMouseOut = {() => setIsHover(false)}
+                   
+                   /> :
                     <img onClick = {imageOnClick} style = {isHover ? {width: 350, height: 450, marginLeft: 50} : {width: 250, height: 350, marginLeft: 50}} src = {`./photo${p.id}.jpg`} 
                     onMouseOver = {() => setIsHover(true)}
                     onMouseOut = {() => setIsHover(false)}
+                  
+                   
                     />
+                    }
+                     {p.isSoldOut ? 
+                     <div className = "text-on-image">SOLD OUT</div>
+                    // () => setOnClick(false)
+                     
+                     : <></>}
+                     {/* :  () => setOnClick(true)} */}
+       
+                  
+                    </div>
+                    
                     {/* <HoverImage onClick = {imageOnClick} style = {{width: 100, height: 100}} hoverSrc =  {`./photo${p.id}.jpg`} src = {`./photo${p.id}.jpg`} /> */}
                 <br/>
-                {p.isSoldOut ?
+                {/* {p.isSoldOut ?
                 <text>E SOLD OUT</text>
-                : <></>}
+                : <></>} */}
                 <br />
                 <text>{p.brand}</text>
                 <br />
