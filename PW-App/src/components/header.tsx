@@ -94,6 +94,10 @@ export function Header(p:{title?: string, register?: string}){
               <div>
                 <div className ="buttons">
                 <Button variant ="text" onClick = {() => {
+                }} >
+                    <Link style = {{color: 'black', textDecoration: 'none'} } to = {'/'}>Home</Link>
+                </Button>
+                <Button variant ="text" onClick = {() => {
                     if (gender === 0) {
                         setGender(null);
                     } else {

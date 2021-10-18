@@ -7,6 +7,7 @@ import { User } from '../models/user-model';
 import StoreDataService from "../services/users.service";
 import MuiAlert from "@material-ui/lab/Alert";
 import Alert from '@mui/material/Alert';
+import { Footer } from '../components/Footer';
 export function Login(){
     const history = useHistory();
    const [userLogged, setUserLogged] = useState({
@@ -89,14 +90,16 @@ export function Login(){
                     <br />
                     <p style = {{}}> BY GIVING US YOUR DETAILS, PURCHASING IN OUR ONLINE STORE WILL BE FASTER AND AN ENJOYABLE EXPERIENCE.</p>
                     <br/><br/><br/>
-                    <Button variant = "contained" style = {{backgroundColor: 'black', color: 'white', top: 32.5, width: 250, fontSize: 12, height: 40}}>
+                    <Button variant = "contained" style = {{backgroundColor: 'black', color: 'white', top: 50, width: 250, fontSize: 12, height: 40}}>
                         <Link style = {{textDecoration: 'none', color: 'white'}} to = '/registration'>CREATE ACCOUNT</Link>
                     </Button>
                  </div>
              
                  
                  </div>
-    
+                 <div style = {{marginTop: 299}}>
+                    <Footer />
+                </div>
       </div>
     );
 }

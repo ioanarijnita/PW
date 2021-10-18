@@ -9,6 +9,7 @@ import { User } from '../models/user-model';
 import photo from './photo.jpg';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useProductService } from '../hooks/product-hook';
+import { Footer } from '../components/Footer';
 export function CartPage()
 {
     const [size, setSize] = useState<number[]>([]);
@@ -106,7 +107,7 @@ export function CartPage()
 
                 bagItems[index].productsAdded = 1;
                 localStorage.setItem("bag", JSON.stringify(bagItems));
-            }} style ={size[index] === index1 ? {backgroundColor: 'black', color:'white'} : item?.removedSizes![index1] === index1 ? {backgroundColor: 'red', color: 'white'} : {}}>{item1}</Button>)}
+            }} style ={size[index] === index1 ? {backgroundColor: 'black', color:'white'} : item?.removedSizes![index1] === index1 ? {opacity: 0.3, color: 'black'} : {}}>{item1}</Button>)}
             
             <Button onClick = {() => {
                 bagItems.splice(index, 1);
@@ -152,6 +153,9 @@ export function CartPage()
         )}
         <br></br><br></br>
         <text style = {!bagItems.length ? {left: 200, fontWeight: 'bolder', fontSize: 20, position: 'absolute', marginTop: 170} : {marginRight: 720, fontWeight: 'bolder', fontSize: 20}}>TOTAL: {totalAmmount} {selectedCurrencySymbol}</text>
+        <div style = {{marginTop: 199}}>
+         <Footer />
+        </div>
     </div>      
     );
 }

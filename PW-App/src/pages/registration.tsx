@@ -7,6 +7,7 @@ import axios from 'axios';
 import StoreDataService from "../services/users.service";
 import { User } from '../models/user-model';
 import { useLoginService } from '../hooks/login-hooks';
+import { Footer } from '../components/Footer';
 
 export function Registration(){
     const [user, setUser] = useState<User>({
@@ -163,13 +164,14 @@ export function Registration(){
                     InputLabelProps = {{style : {fontSize: 10}}}/>
                 </div>
                 <br/><br/><br/><br/><br/>
-                    <Button onClick = {createAccount} variant = "contained" style = {{backgroundColor: 'black', color: 'white', width: 250, fontSize: 12, height: 40}}>
+                    <Button onClick = {createAccount} variant = "contained" style = {{backgroundColor: 'black', color: 'white', width: 250, fontSize: 12, height: 40, marginBottom: 20}}>
                     CREATE ACCOUNT
                     </Button>
                 
             </FormControl>
 
             </div>
+            <Footer />
         </div>
     );
 }

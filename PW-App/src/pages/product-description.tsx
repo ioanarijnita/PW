@@ -7,6 +7,7 @@ import { CartContext, useCartService } from '../hooks/cart-hooks';
 import { useLocation } from 'react-router-dom';
 import { useProductService } from '../hooks/product-hook';
 import { CurrencySelection, TotalAmmount } from '../App';
+import { Footer } from '../components/Footer';
 
 type ProductItem = {
     brand: string,
@@ -100,7 +101,7 @@ export function ProductDescription(){
             if (index !== removeSizes[index]) {
                 setSize(index)
             }
-        }} style = {size === index ? {backgroundColor: 'black', color: 'white'} : removeSizes[index] === index ? {backgroundColor: 'red', color: 'white'} : {}}>{item}</Button>)}
+        }} style = {size === index ? {backgroundColor: 'black', color: 'white'} : removeSizes[index] === index ? {opacity: 0.3, color: 'black'} : {}}>{item}</Button>)}
         </div>
         <br/>
         <text className = "text-style" style = {{fontWeight: 'bold'}}>{convertedPrice} {selectedCurrencySymbol}</text>

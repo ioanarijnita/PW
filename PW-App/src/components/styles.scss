@@ -114,3 +114,33 @@ body {
     transition: all 1.3s;
     width: 100%;
 }
+
+.social-container {
+    padding: 25px 50px;
+}
+
+a.social {
+    margin: 0 1rem;
+    transition: transform 250ms;
+    display: inline-block;
+}
+
+a.social:hover {
+    transform: translateY(-2px);
+}
+
+a.youtube {
+    color: black;
+}
+
+a.facebook {
+    color: black;
+}
+
+a.twitter {
+    color: black;
+}
+
+a.instagram {
+    color: black;
+}

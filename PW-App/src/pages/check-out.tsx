@@ -2,6 +2,7 @@ import { Button, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createNonNullExpression } from 'typescript';
+import { Footer } from '../components/Footer';
 import { Header } from '../components/header';
 import { useCartService } from '../hooks/cart-hooks';
 import { useLoginService } from '../hooks/login-hooks';
@@ -27,6 +28,7 @@ export function CheckOut(){
         address: "",
         // isLogged: false
     });
+    const [isClicked, setIsClicked] = useState<boolean>();
 
     useEffect(() => {
         const userStorage = localStorage.getItem("User");
@@ -42,41 +44,50 @@ export function CheckOut(){
     }, [userData])
 
     async function checkoutOnClick() {
-        const arrayOfNumberOfProducts = bagItems.map(item => item.noProducts.split(","))
-        // split: 1,2,3,4,5 => [1,2,3,4,5]
-
-        for (let i=0; i < arrayOfNumberOfProducts.length; i++) {
-        let newNumberOfProducts = "";    
-            for (let j=0; j < 5; j++) {
-                if (bagItems[i].sizeIndex === j) {
-                    // variabila in string: `${variabila}`
-                    newNumberOfProducts = newNumberOfProducts + `${parseInt(arrayOfNumberOfProducts[i][j]) - bagItems[i].productsAdded!}`
-                } else {
-                    newNumberOfProducts = newNumberOfProducts + `${arrayOfNumberOfProducts[i][j]}`
+        const sizeIndexesArray = bagItems.map(item => item.sizeIndex);
+        if (sizeIndexesArray.some(item => item === undefined)) {
+            setIsClicked(false);
+            return;
+        } else {
+            setIsClicked(true);
+            const arrayOfNumberOfProducts = bagItems.map(item => item.noProducts.split(","))
+            // split: 1,2,3,4,5 => [1,2,3,4,5]
+    
+            for (let i=0; i < arrayOfNumberOfProducts.length; i++) {
+            let newNumberOfProducts = "";    
+                for (let j=0; j < 5; j++) {
+                    if (bagItems[i].sizeIndex === j) {
+                        // variabila in string: `${variabila}`
+                        newNumberOfProducts = newNumberOfProducts + `${parseInt(arrayOfNumberOfProducts[i][j]) - bagItems[i].productsAdded!}`
+                    } else {
+                        newNumberOfProducts = newNumberOfProducts + `${arrayOfNumberOfProducts[i][j]}`
+                    }
+                    if (j !== 4) {
+                        newNumberOfProducts = newNumberOfProducts + `,`;
+                    }
                 }
-                if (j !== 4) {
-                    newNumberOfProducts = newNumberOfProducts + `,`;
-                }
+                updateWomenById(bagItems[i].id!, {
+                    ...bagItems[i],
+                    noProducts: newNumberOfProducts
+                })
+                setBagItems([]);
+                localStorage.removeItem("bag");
             }
-            updateWomenById(bagItems[i].id!, {
-                ...bagItems[i],
-                noProducts: newNumberOfProducts
-            })
-            setBagItems([]);
-            localStorage.removeItem("bag");
+            history.push("/")
+            localStorage.setItem("total", String(0));
+            setTotalAmmount(0);
+            setRerenderTotal(!rerenderTotal);
         }
-        history.push("/")
-        localStorage.setItem("total", String(0));
-        setTotalAmmount(0);
-        setRerenderTotal(!rerenderTotal);
+        
     }
     return(
 
     <div>
         <br/>
+        <div style = {{display: 'flex'}}>
          <Header title = "CHECK OUT"></Header>
 
-         <div>
+         <div style = {{display: 'flex', flexDirection: 'column', marginTop: 135, marginLeft: 155}}>
               <TextField   
                         id="standard-textarea"
                         label = "FIRST NAME"
@@ -121,10 +132,15 @@ export function CheckOut(){
                         onChange = {(e: any) => setUserLoggedIn({...userLoggedIn, address: e.target.value})}
                         InputLabelProps = {{style : {fontSize: 10}}}
                 />
-                 <br /> <br /> <br />
-                 <Button variant = "outlined" onClick = {checkoutOnClick}>CHECKOUT</Button>
+                 <br /> <br /> <br /> <br /> <br /> <br />
+                 <Button style = {{color: 'black', backgroundColor: 'green'}} variant = "outlined" onClick = {checkoutOnClick}>CHECK OUT</Button>
+                 {
+                     isClicked ? <text>Success!</text> : isClicked === false ?  <text>Please provide a size for each of your clothing items</text> : <></>
+                 }
             </div>
-                    
+            </div>
+            <Footer />
+
     </div>
     );
 }

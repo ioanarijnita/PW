@@ -9,6 +9,7 @@ import { useLoginService } from '../hooks/login-hooks';
 import WomenDataService from '../services/women.service';
 import { useProductService } from '../hooks/product-hook';
 import { Women } from '../models/women-model';
+import { Footer } from '../components/Footer';
 
 export function ProductList(){
 
@@ -54,6 +55,7 @@ export function ProductList(){
             {(!searchInput ? womenData : searchResults!).map((item, index) => item.gender === gender || gender === undefined || gender === null ? <StoreItem id = {item.id!} brand = {item.brand} name = {item.name} isSoldOut = {soldOut[index]} price = {item.price}></StoreItem> : <></>)
           }      
        </div>
+       <Footer></Footer>
     </div>
     );
 }

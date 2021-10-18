@@ -10,6 +10,8 @@ import { Registration } from './pages/registration';
 import { CheckOut } from './pages/check-out';
 import { LoginContextProvider, useLoginService } from './hooks/login-hooks';
 import { ProductContext, useProductService, WomenContextProvider } from './hooks/product-hook';
+import { Footer } from './components/Footer';
+import { FirstPage } from './pages/first-page';
 
 export const GenderSelection = createContext<{gender?: number | null, setGender(value: number | null): void }>({
   setGender() {}
@@ -43,7 +45,7 @@ function App() {
           <CartContextProvider>
             <GenderSelection.Provider value = {{gender, setGender}}>      
               <Switch>
-                <Route exact path = '/'  component = {ProductList}/>
+                <Route exact path = '/'  component = {FirstPage}/>
                 <Route path = '/women'  component = {ProductList}/>
                 <Route path = '/men'  component = {ProductList}/>
                 <Route path = '/kids' component = {ProductList}/>
@@ -62,6 +64,7 @@ function App() {
         {/* </KidsContextProvider> */}
       </LoginContextProvider>
     </div>
+    {/* <Footer /> */}
     </Router>
   );
 }
