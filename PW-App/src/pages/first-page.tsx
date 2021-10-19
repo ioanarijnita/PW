@@ -8,14 +8,19 @@ export function FirstPage(props: any)
 {
     var items = [
         {
-            src1: "./photo.jpg",
-            src2: "./photo2.jpg",
-            src3: "./photo3.jpg"
+            src1: "./250.jpg",
+            src2: "./251.jpg",
+            src3: "./252.jpg"
         },
         {
-            src1: "./photo3.jpg",
-            src2: "./photo4.jpg",
-            src3: "./photo5.jpg"
+            src1: "./253.jpg",
+            src2: "./254.jpg",
+            src3: "./255.jpg"
+        },
+        {
+            src1: "./256.jpg",
+            src2: "./257.jpg",
+            src3: "./258.jpg"
         }
     ]
 
