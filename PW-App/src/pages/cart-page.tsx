@@ -147,7 +147,7 @@ export function CartPage()
                     makeTotal();
                 }} >-</Button>
             </div>
-            <img style = {{width: 150, height: 200, marginLeft: 20}} src = {`./photo${item.id}.jpg`}/>
+            <img style = {{width: 150, height: 200, marginLeft: 20}} src = {item.imageName}/>
         </div>
         </div>
         )}

@@ -12,6 +12,8 @@ import { LoginContextProvider, useLoginService } from './hooks/login-hooks';
 import { ProductContext, useProductService, WomenContextProvider } from './hooks/product-hook';
 import { Footer } from './components/Footer';
 import { FirstPage } from './pages/first-page';
+import { AdminProductList } from './pages/admin-product-list';
+import { AdminAddProduct } from './pages/admin-add-product';
 
 export const GenderSelection = createContext<{gender?: number | null, setGender(value: number | null): void }>({
   setGender() {}
@@ -54,6 +56,8 @@ function App() {
                 <Route path = '/login' component = {Login}/>
                 <Route path = '/registration' component = {Registration}/>
                 <Route path = '/check-out' component = {CheckOut}/>
+                <Route path = '/adminproductlist' component = {AdminProductList} />
+                <Route path = '/adminaddproduct' component = {AdminAddProduct} />
               </Switch>
             </GenderSelection.Provider>
           </CartContextProvider>

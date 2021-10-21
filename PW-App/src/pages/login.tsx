@@ -13,8 +13,14 @@ export function Login(){
    const [userLogged, setUserLogged] = useState({
        username: "",
        password:"",
+       userId: ""
    })
-   const { getUsers, userData, setUserData, setUserIndex, userIndex } = useLoginService();
+
+   const [adminAccount] = useState({
+       username: "admin",
+       password: "admin"
+   })
+   const { getUsers, userData, setUserObj, setUserIndex, userObj } = useLoginService();
    useEffect(() => {
        getUsers()
    }, [])
@@ -22,23 +28,22 @@ export function Login(){
    const [showAlert, setShowAlert] = useState(false);
 
    function handleLogIn(){
-       let i = 0;
-       for (const userItem of userData!) {
-        if (userLogged.username === userItem.username && userLogged.password === userItem.password) {
-            // setIsUserLoggedIn(true);
-            userData![i].isUserLoggedIn = true;
-            userData![i].username = userItem.username;
-            setUserIndex(i);
-            setUserData([...userData!])
-            localStorage.setItem("User", JSON.stringify(userItem));
-       }
-       i++;
+    const userId = userData.filter(item => item.username === userLogged.username).map(item => item.id).pop();
+    StoreDataService.login({...userLogged, userId: String(userId)})
+    .then(res => {
+        setUserObj(res.data)
+        localStorage.setItem("User", JSON.stringify(res.data));
+        if (res.data.id !== undefined && res.data.username !== 'admin') {
+            history.push("/")
+        } else if (res.data.id !== undefined && res.data.username === 'admin') {
+            history.push("/adminproductlist")
+        }
+        else {
+            setShowAlert(true);
+        }
+        
     }
-    if (userData?.some(item => item.isUserLoggedIn === true)) {
-        history.push("/");
-    } else {
-        setShowAlert(true);
-    }
+)
    }
 
    function AlertShowing() {

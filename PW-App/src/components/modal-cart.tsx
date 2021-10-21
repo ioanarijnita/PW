@@ -58,7 +58,7 @@ import './styles.scss';
               <text><strong>Size: </strong>{item.sizes === undefined ? "" : item.sizes![item.sizeIndex]}</text>
               <br /> <br/> <br/><br /> <br/> <br/><br/>
             </div>
-            <img  style = {{width: 135, height: 135}} src = {`./photo${item.id}.jpg`} />
+            <img  style = {{width: 135, height: 135}} src = {item.imageName} />
           </div>
           )}
           <div className="modal-footer">

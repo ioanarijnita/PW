@@ -7,14 +7,14 @@ class StoreDataService {
   }
 
   get(username: string) {
-    return http.get(`/users/${username}`);
+    return http.get(`/users/user/${username}`);
   }
 
   create(data: User) {
     return http.post("/users", data);
   }
   login(data: any) {
-    return http.post("/users", data);
+    return http.post("/users/users", data);
   }
 
 //   update(id, data) {

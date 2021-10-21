@@ -23,7 +23,7 @@ export function Header(p:{title?: string, register?: string}){
     })
     const history = useHistory();
     const [parsedUser, setParsedUser] = useState<User>();
-    const {userData, userIndex, setUserData} = useLoginService();
+    const {userData, setUserObj, setUserData, userObj} = useLoginService();
     const { womenData, soldOut, searchInput, setSearchInput, setSearchResults, setWomenData } = useProductService();
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export function Header(p:{title?: string, register?: string}){
             setParsedUser(JSON.parse(user));
             // setUserData(JSON.parse(user));
         }
-    }, [])
+    }, [userObj])
 
     const closeModalHandlerBag = () => setShowFilterOrBag(
         {
@@ -81,15 +81,18 @@ export function Header(p:{title?: string, register?: string}){
     }, [closeModalHandlerFilter])
     
     function handleOnClickLoggIN(){
-        if (userData[userIndex].isUserLoggedIn === false) {
+        // const checkForUser = localStorage.getItem("User");
+        if (!userObj) {
             history.push("/login")
-        } else {
-            userData[userIndex].isUserLoggedIn = false;
-            setUserData([...userData])
             localStorage.removeItem("User");
+        } else {
+            setUserObj(undefined)
+            // setUserData([...userData])
+            localStorage.removeItem("User");
+            history.push("/login")
     }
     }
-    
+
     return(
               <div>
                 <div className ="buttons">
@@ -168,8 +171,9 @@ export function Header(p:{title?: string, register?: string}){
                      }  
                  }} className="btn-openModal">Filter</Button>
                  <ModalFilter show={showFilterOrBag.showFilter} close={closeModalHandlerFilter} />
-                 <Button onClick = {handleOnClickLoggIN} variant = "text" style = {{position: 'absolute', left: 1120, width: 100, bottom: 30 }}>{parsedUser?.isUserLoggedIn ? "LOG OUT" : "LOG IN"}</Button>
+                 <Button onClick = {handleOnClickLoggIN} variant = "text" style = {{position: 'absolute', left: 1120, width: 100, bottom: 30 }}>{!parsedUser?.id ? "LOG IN" : "LOG OUT"}</Button>
                  <text style = {{position: 'absolute', left: 1230, bottom: 40, fontWeight: 'bold'}}>{parsedUser?.name}</text>
+                 {parsedUser?.username === 'admin' ? <Button onClick = {() => history.push("/adminproductlist")} variant = "text" style = {{position: 'absolute', left: 1280, top: -30, width: 200 }}>{"ADD PRODUCTS"}</Button> : <></>}
                  <br/><br/>
                  <div style = {{position: 'absolute', display: 'flex', flexDirection: 'row'}}>
                 <p style = {{fontWeight: 'bold', fontSize: 25, paddingLeft: 5, width: 400}}>{p.title}</p>

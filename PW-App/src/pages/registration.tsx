@@ -10,7 +10,9 @@ import { useLoginService } from '../hooks/login-hooks';
 import { Footer } from '../components/Footer';
 
 export function Registration(){
+    const {userData, setUserIndex, setUserData, setUserObj} = useLoginService();
     const [user, setUser] = useState<User>({
+        id: userData.length,
         username: '',
         password: '',
         name: '',
@@ -29,7 +31,7 @@ export function Registration(){
    
 
     const history = useHistory();
-    const {userData, setUserIndex, setUserData, userIndex} = useLoginService();
+    
 
     async function createAccount () {
     if (user.username === "" || user.password === "" || user.name === "" || user.surname === "" || user.region === "" || user.address === "") 
@@ -45,9 +47,8 @@ export function Registration(){
      else {
         await StoreDataService.create(user)
         .then( response => {
-            console.log(response.data)
             user.isUserLoggedIn = true;
-            // setUserData([user]);
+            setUserObj(user);
             localStorage.setItem("User", JSON.stringify(user));
             setUserIndex(userData.length);
             

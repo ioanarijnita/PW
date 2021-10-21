@@ -16,6 +16,7 @@ export function useLoginService() {
 
 function useLogin() {
     const [userData, setUserData] = useState<User[]>([{
+        id: 0,
        username: '',
        password: '',
        name: '',
@@ -24,6 +25,7 @@ function useLogin() {
        address: '',
        isUserLoggedIn: false
     }])
+    const [userObj, setUserObj] = useState<User>()
     const [userIndex, setUserIndex] = useState(0);
 
     return function() {
@@ -40,7 +42,9 @@ function useLogin() {
             userData,
             setUserData,
             userIndex,
-            setUserIndex
+            setUserIndex,
+            userObj,
+            setUserObj
         }
     }
 }

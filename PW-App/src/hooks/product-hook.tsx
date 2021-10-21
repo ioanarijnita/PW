@@ -22,6 +22,7 @@ export function useProduct(){
         gender: 0,
         sizes: [],
         sizeIndex: 0,
+        imageName: ''
     }])
     const [womenDataById, setWomenDataById] = useState<Women>()
     const [searchInput, setSearchInput] = useState<string>('');
@@ -76,6 +77,26 @@ export function useProduct(){
                   });
         }
 
+        const deleteProductAdmin = (id: number) => {
+            WomenDataService.delete(id)
+            .then(response => {
+              console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+        }
+
+        const addProductAdmin = (data: Women) => {
+            WomenDataService.create({...data})
+            .then(response => {
+              console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+        }
+
         return {
             womenData,
             setWomenData,
@@ -89,7 +110,9 @@ export function useProduct(){
             updateWomenById,
             soldOut,
             setSoldOut,
-            isSoldOut
+            isSoldOut,
+            deleteProductAdmin,
+            addProductAdmin
         }
     }
 }

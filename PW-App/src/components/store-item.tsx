@@ -7,7 +7,7 @@ import './styles.scss';
 import HoverImage from "react-hover-image";
 import { CurrencySelection } from '../App';
 
-export function StoreItem(p: {brand: string, name: string, price: string, id: number, image?: string, isSoldOut: boolean}){
+export function StoreItem(p: {imageName: string, brand: string, name: string, price: string, id: number, image?: string, isSoldOut: boolean}){
 
     const history = useHistory();
     const {getWomenById, womenData} = useProductService();
@@ -50,12 +50,12 @@ useEffect(() => {
                 <div className = "head-text">
                     {p.isSoldOut ?  
                     
-                    <img  style = {isHover ? {width: 350, height: 450, marginLeft: 50, opacity: 0.5} : {width: 250, height: 350, marginLeft: 50, opacity: 0.5}} src = {`./photo${p.id}.jpg`} 
+                    <img  style = {isHover ? {width: 350, height: 450, marginLeft: 50, opacity: 0.5} : {width: 250, height: 350, marginLeft: 50, opacity: 0.5}} src = {`./${p.imageName}`} 
                     // onMouseOver = {() => setIsHover(true)}
                     // onMouseOut = {() => setIsHover(false)}
                    
                    /> :
-                    <img onClick = {imageOnClick} style = {isHover ? {width: 350, height: 450, marginLeft: 50} : {width: 250, height: 350, marginLeft: 50}} src = {`./photo${p.id}.jpg`} 
+                    <img onClick = {imageOnClick} style = {isHover ? {width: 350, height: 450, marginLeft: 50} : {width: 250, height: 350, marginLeft: 50}} src = {`./${p.imageName}`} 
                     onMouseOver = {() => setIsHover(true)}
                     onMouseOut = {() => setIsHover(false)}
                   

@@ -10,6 +10,7 @@ export interface Women {
     sizeIndex: number,
     sizes?: string[],
     productsAdded?: number,
-    removedSizes?: number[]
+    removedSizes?: number[],
+    imageName?: string
 }
 

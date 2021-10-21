@@ -18,9 +18,9 @@ class WomenDataService {
     return http.put(`/women/${id}`, data);
   }
 
-//   delete(id) {
-//     return http.delete(`/tutorials/${id}`);
-//   }
+  delete(id: number) {
+    return http.delete(`/women/${id}`);
+  }
 
 //   deleteAll() {
 //     return http.delete(`/tutorials`);
