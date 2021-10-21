@@ -21,7 +21,8 @@ exports.create = (req, res) => {
         noProducts: req.body.noProducts,
         price: req.body.price,
         description: req.body.description,
-        gender: req.body.gender
+        gender: req.body.gender,
+        imageName: req.body.imageName
     };
 
     // Save Tutorial in the database
@@ -93,6 +94,30 @@ exports.update = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: "Error updating Women with id=" + id
+            });
+        });
+};
+
+exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    Women.destroy({
+            where: { id: id }
+        })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Women was deleted successfully!"
+                });
+            } else {
+                res.send({
+                    message: `Cannot delete Women with id=${id}. Maybe Women was not found!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete Women with id=" + id
             });
         });
 };

@@ -23,8 +23,5 @@ db.Sequelize = sequelize;
 
 db.users = require("./users.model.js")(sequelize, Sequelize);
 db.women = require("./women.model.js")(sequelize, Sequelize);
-db.men = require("./men.model.js")(sequelize, Sequelize);
-db.kids = require("./kids.model.js")(sequelize, Sequelize);
-
 
 module.exports = db;

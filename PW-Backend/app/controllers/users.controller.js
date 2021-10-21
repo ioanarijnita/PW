@@ -1,8 +1,8 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
-// const bcrypt = require('bcryptjs')
-// Create and Save a new Tutorial
+const bcrypt = require('bcryptjs')
+    // Create and Save a new Tutorial
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.username) {
@@ -13,10 +13,10 @@ exports.create = (req, res) => {
     }
 
     // Create a Tutorial
-    // bcrypt.hashSync(req.body.password, bcrypt.genSaltSync()),
+    // bcrypt.hashSync(req.body.password, bcrypt.genSaltSync());
     const user = {
         username: req.body.username,
-        password: req.body.password,
+        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync()),
         name: req.body.name,
         surname: req.body.surname,
         region: req.body.region,
@@ -39,15 +39,16 @@ exports.login = async(req, res) => {
     // Validate request
     if (!req.body.username) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "Content can not b empty!"
         });
         return;
     }
-    const existingUser = await User.findOne({ username: req.body.username });
+
+    const existingUser = await User.findByPk(req.body.userId);
     if (!existingUser) return res.json({ msg: `No account with this email found` })
     const doesPasswordMatch = bcrypt.compareSync(req.body.password, existingUser.password);
-    if (!doesPasswordMatch) return res.json({ msg: `Passwords did not match` });
-
+    if (!doesPasswordMatch) return res.json({ msg: "Passwords do not match" });
+    console.log(existingUser, doesPasswordMatch)
     res.json(existingUser);
     // const user = {
     //     username: req.body.username,

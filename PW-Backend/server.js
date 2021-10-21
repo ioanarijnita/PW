@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const app = express();
 
 app.use(cors())
@@ -19,8 +18,7 @@ db.sequelize.sync().then(() => {
 
 require("./app/routes/users.routes")(app);
 require("./app/routes/women.routes")(app);
-require("./app/routes/men.routes")(app);
-require("./app/routes/kids.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

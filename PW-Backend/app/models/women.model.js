@@ -24,6 +24,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         gender: {
             type: Sequelize.INTEGER
+        },
+        imageName: {
+            type: Sequelize.STRING
         }
     });
 
