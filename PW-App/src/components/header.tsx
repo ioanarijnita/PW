@@ -141,7 +141,7 @@ export function Header(p:{title?: string, register?: string}){
                  />
                  <div style = {{position: 'absolute'}}>
                 <Select
-                   style ={{ position: 'absolute', marginLeft: 850, width: 100, fontStyle: 'italic', bottom: 30}} 
+                   style ={{ position: 'absolute', marginLeft: 650, width: 100, fontStyle: 'italic', bottom: 30}} 
                    native
                    id = "moneyType"
                    value = {currency}
@@ -159,11 +159,11 @@ export function Header(p:{title?: string, register?: string}){
                 <option value = {2} style ={{fontStyle:'italic' }} >{"£ Pound"}</option>
                </Select>
                { showFilterOrBag.showBag ? <div  onClick={closeModalHandlerBag} className="back-drop"></div> : null }
-                 <Button variant = "text" style = {{position: 'absolute', left: 950, width: 50, bottom: 30}} onClick={() => setShowFilterOrBag({showFilter: false, showBag: true})} className="btn-openModal"><ShoppingCartIcon></ShoppingCartIcon></Button>
+                 <Button variant = "text" style = {{position: 'absolute', left: 750, width: 50, bottom: 30}} onClick={() => setShowFilterOrBag({showFilter: false, showBag: true})} className="btn-openModal"><ShoppingCartIcon></ShoppingCartIcon></Button>
                  <Modal show={showFilterOrBag.showBag} close={closeModalHandlerBag} />
                 
                  {showFilterOrBag.showFilter ? <div  onClick={closeModalHandlerFilter} className="back-drop"></div> : null }
-                 <Button variant = "text" style = {{position: 'absolute', left: 1000, width: 130, bottom: 30}} onClick={() => {
+                 <Button variant = "text" style = {{position: 'absolute', left: 800, width: 130, bottom: 30}} onClick={() => {
                      setShowFilterOrBag({showFilter: true, showBag: false});
                      const revertToWomenData = localStorage.getItem("Women")
                      if (revertToWomenData !== null) {
@@ -171,9 +171,9 @@ export function Header(p:{title?: string, register?: string}){
                      }  
                  }} className="btn-openModal">Filter</Button>
                  <ModalFilter show={showFilterOrBag.showFilter} close={closeModalHandlerFilter} />
-                 <Button onClick = {handleOnClickLoggIN} variant = "text" style = {{position: 'absolute', left: 1120, width: 100, bottom: 30 }}>{!parsedUser?.id ? "LOG IN" : "LOG OUT"}</Button>
-                 <text style = {{position: 'absolute', left: 1230, bottom: 40, fontWeight: 'bold'}}>{parsedUser?.name}</text>
-                 {parsedUser?.username === 'admin' ? <Button onClick = {() => history.push("/adminproductlist")} variant = "text" style = {{position: 'absolute', left: 1280, top: -30, width: 200 }}>{"ADD PRODUCTS"}</Button> : <></>}
+                 <Button onClick = {handleOnClickLoggIN} variant = "text" style = {{position: 'absolute', left: 920, width: 100, bottom: 30 }}>{!parsedUser?.id ? "LOG IN" : "LOG OUT"}</Button>
+                 <text style = {{position: 'absolute', left: 1030, bottom: 40, fontWeight: 'bold'}}>{parsedUser?.name}</text>
+                 {parsedUser?.username === 'admin' ? <Button onClick = {() => history.push("/adminproductlist")} variant = "text" style = {{position: 'absolute', left: 1080, top: -30, width: 200 }}>{"ADD PRODUCTS"}</Button> : <></>}
                  <br/><br/>
                  <div style = {{position: 'absolute', display: 'flex', flexDirection: 'row'}}>
                 <p style = {{fontWeight: 'bold', fontSize: 25, paddingLeft: 5, width: 400}}>{p.title}</p>
