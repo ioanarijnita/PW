@@ -13,7 +13,7 @@ import { Women } from '../models/women-model';
 
 export function CheckOut(){
 
-    const { getUsers, userData, setUserData, setUserIndex, userIndex } = useLoginService();
+    const { getUsers, userData, userObj, setUserObj, userIndex } = useLoginService();
     const { bagItems, setBagItems, setTotalAmmount, setRerenderTotal, rerenderTotal } = useCartService();
     const { womenData, updateWomenById, getWomenById, womenDataById } = useProductService();
     const history = useHistory();
@@ -33,10 +33,11 @@ export function CheckOut(){
     useEffect(() => {
         const userStorage = localStorage.getItem("User");
         if (userStorage !== null) {
-            setUserLoggedIn({name: userData[userIndex].name,
-                surname: userData[userIndex].surname,
-                region: userData[userIndex].region,
-                address: userData[userIndex].address
+            const parsedUser = JSON.parse(userStorage!)
+            setUserLoggedIn({name: parsedUser.name,
+                surname: parsedUser.surname,
+                region: parsedUser.region,
+                address: parsedUser.address
         })
         } else {
             setUserLoggedIn({name: "", "surname": "", region: "", address: ""})
