@@ -53,7 +53,7 @@ export function CheckOut(){
             setIsClicked(true);
             const arrayOfNumberOfProducts = bagItems.map(item => item.noProducts.split(","))
             // split: 1,2,3,4,5 => [1,2,3,4,5]
-    
+     
             for (let i=0; i < arrayOfNumberOfProducts.length; i++) {
             let newNumberOfProducts = "";    
                 for (let j=0; j < 5; j++) {
