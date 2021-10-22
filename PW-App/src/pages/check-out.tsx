@@ -9,6 +9,8 @@ import { useLoginService } from '../hooks/login-hooks';
 import { useProductService } from '../hooks/product-hook';
 import { User } from '../models/user-model';
 import { Women } from '../models/women-model';
+import MuiAlert from "@material-ui/lab/Alert";
+import Alert from '@mui/material/Alert';
 
 
 export function CheckOut(){
@@ -29,6 +31,13 @@ export function CheckOut(){
         // isLogged: false
     });
     const [isClicked, setIsClicked] = useState<boolean>();
+    const [showAlert, setShowAlert] = useState(false);
+
+    function AlertShowing() {
+        return (
+         <Alert variant="outlined" onClose={() => setShowAlert(false)} severity="error">Please fill in all the fields!</Alert>
+        );
+    }
 
     useEffect(() => {
         const userStorage = localStorage.getItem("User");
@@ -51,6 +60,10 @@ export function CheckOut(){
             return;
         } else {
             setIsClicked(true);
+            if(userLoggedIn.address === '' || userLoggedIn.name === '' || userLoggedIn.region === '' || userLoggedIn.surname === '') {
+                setShowAlert(true);
+                return;
+            }
             const arrayOfNumberOfProducts = bagItems.map(item => item.noProducts.split(","))
             // split: 1,2,3,4,5 => [1,2,3,4,5]
      
@@ -136,8 +149,11 @@ export function CheckOut(){
                  <br /> <br /> <br /> <br /> <br /> <br />
                  <Button style = {{color: 'black', backgroundColor: 'green'}} variant = "outlined" onClick = {checkoutOnClick}>CHECK OUT</Button>
                  {
-                     isClicked ? <text>Success!</text> : isClicked === false ?  <text>Please provide a size for each of your clothing items</text> : <></>
+                     isClicked ? <text></text> : isClicked === false ?  <text>Please provide a size for each of your clothing items</text> : <></>
                  }
+                  <div>
+                     {showAlert ? <AlertShowing></AlertShowing> :<></> }
+                  </div>
             </div>
             </div>
             <Footer />

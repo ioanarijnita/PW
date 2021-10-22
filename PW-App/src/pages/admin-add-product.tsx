@@ -37,7 +37,7 @@ export function AdminAddProduct() {
 
    function AlertShowing() {
     return (
-     <Alert variant="outlined" onClose={() => setShowAlert(0)} severity={showAlert === 1 ? "success" : "error"}>{showAlert === 1 ? "Item added successfully!" : "Please fil all the fields!"}</Alert>
+     <Alert variant="outlined" onClose={() => setShowAlert(0)} severity={showAlert === 1 ? "success" : "error"}>{showAlert === 1 ? "Item added successfully!" : "Please fill in all the fields!"}</Alert>
     );
 }
     return (
