@@ -57,7 +57,7 @@ export function AdminOrdersList() {
                             total: total
                         },
                     })
-                }}>SEE ORDER {item.id}</Button>
+                }}>SEE ORDER</Button>
                 <Button onClick={async () => {
                     await OrderDataService.delete(item.id!)
                     getOrders();
