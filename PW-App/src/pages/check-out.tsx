@@ -11,7 +11,7 @@ import { User } from '../models/user-model';
 import { Women } from '../models/women-model';
 import MuiAlert from "@material-ui/lab/Alert";
 import Alert from '@mui/material/Alert';
-
+import OrderDataService from './../services/orders.service';
 
 export function CheckOut(){
 
@@ -49,11 +49,12 @@ export function CheckOut(){
                 address: parsedUser.address
         })
         } else {
-            setUserLoggedIn({name: "", "surname": "", region: "", address: ""})
+            setUserLoggedIn({name: "", surname: "", region: "", address: ""})
         }
     }, [userData])
 
     async function checkoutOnClick() {
+        OrderDataService.create({firstname: userLoggedIn.name, surname: userLoggedIn.surname, address: userLoggedIn.address, orderdata: JSON.stringify(bagItems)})
         const sizeIndexesArray = bagItems.map(item => item.sizeIndex);
         if (sizeIndexesArray.some(item => item === undefined)) {
             setIsClicked(false);

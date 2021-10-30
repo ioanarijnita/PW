@@ -14,6 +14,9 @@ import { Footer } from './components/Footer';
 import { FirstPage } from './pages/first-page';
 import { AdminProductList } from './pages/admin-product-list';
 import { AdminAddProduct } from './pages/admin-add-product';
+import { AdminOrdersList } from './pages/admin-orders-list';
+import { OrderContextProvider } from './hooks/order-hooks';
+import { AdminOrderDescription } from './pages/admin-order-description';
 
 export const GenderSelection = createContext<{gender?: number | null, setGender(value: number | null): void }>({
   setGender() {}
@@ -39,8 +42,7 @@ function App() {
 <Router>
     <div className="App">
     <LoginContextProvider>
-      {/* <KidsContextProvider> */}
-      {/* <MenContextProvider> */}
+      <OrderContextProvider>
       <WomenContextProvider>
       <CurrencySelection.Provider value = {{currency, setCurrency}}>
         <TotalAmmount.Provider value = {{totalAmmount, setTotalAmmount}}>
@@ -58,14 +60,15 @@ function App() {
                 <Route path = '/check-out' component = {CheckOut}/>
                 <Route path = '/adminproductlist' component = {AdminProductList} />
                 <Route path = '/adminaddproduct' component = {AdminAddProduct} />
+                <Route path = '/adminorderslist' component = {AdminOrdersList} />
+                <Route path = '/adminorderdescription' component = {AdminOrderDescription} />
               </Switch>
             </GenderSelection.Provider>
           </CartContextProvider>
         </TotalAmmount.Provider>
       </CurrencySelection.Provider>
         </WomenContextProvider>
-        {/* </MenContextProvider> */}
-        {/* </KidsContextProvider> */}
+        </OrderContextProvider>
       </LoginContextProvider>
     </div>
     {/* <Footer /> */}
