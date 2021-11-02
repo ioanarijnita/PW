@@ -17,6 +17,7 @@ import { AdminAddProduct } from './pages/admin-add-product';
 import { AdminOrdersList } from './pages/admin-orders-list';
 import { OrderContextProvider } from './hooks/order-hooks';
 import { AdminOrderDescription } from './pages/admin-order-description';
+import { AdminProductEdit } from './pages/admin-product-edit';
 
 export const GenderSelection = createContext<{gender?: number | null, setGender(value: number | null): void }>({
   setGender() {}
@@ -62,6 +63,7 @@ function App() {
                 <Route path = '/adminaddproduct' component = {AdminAddProduct} />
                 <Route path = '/adminorderslist' component = {AdminOrdersList} />
                 <Route path = '/adminorderdescription' component = {AdminOrderDescription} />
+                <Route path = '/adminproductedit' component = {AdminProductEdit} />
               </Switch>
             </GenderSelection.Provider>
           </CartContextProvider>

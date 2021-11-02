@@ -11,6 +11,15 @@ export function AdminProductList() {
         getWomen();
     }, [womenData])
 
+    function editOnClick(id: number) {
+        history.push({
+            pathname: '/adminproductedit',
+            state: {
+                id: id,
+            },
+        })
+    }
+
     return (
         <div>
             <Button onClick={() => {
@@ -42,6 +51,9 @@ export function AdminProductList() {
                                 deleteProductAdmin(item.id!)
                             }} style={{ width: 50, height: 40, left: 50 }}>
                                 <DeleteIcon></DeleteIcon>
+                            </Button>
+                            <Button variant = "outlined" onClick = {() => editOnClick(item.id!)} style = {{width: 50, height: 40, left: 80}}>
+                                EDIT
                             </Button>
                         </div>
                     </div>
